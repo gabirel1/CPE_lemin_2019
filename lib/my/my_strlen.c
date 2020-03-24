@@ -1,18 +1,15 @@
 /*
 ** EPITECH PROJECT, 2019
-** my_strlen.c
+** my_putstr
 ** File description:
-** my_strlen.c task03 day04
+** my_strlen.c
 */
-
-#include <stdlib.h>
 
 int my_strlen(char const *str)
 {
-    size_t i = 0;
+    int i = 0;
 
-    while (str[i] != '\0') {
-        i++;
-    }
+    while (str[i])
+        i += 1;
     return (i);
 }

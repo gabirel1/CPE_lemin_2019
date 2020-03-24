@@ -1,16 +1,14 @@
 /*
 ** EPITECH PROJECT, 2019
-** my_putstrc.c
+** my_putstr
 ** File description:
-** my_putstr.c task02 day04
+** put_str
 */
 
-#include <unistd.h>
+void my_putchar(char c);
 
-int my_strlen(char const *str);
-
-int my_putstr(char const *str)
+void my_putstr(char const *str)
 {
-    write(1, str, my_strlen(str));
-    return (0);
+    for (int i = 0; str[i] != '\0'; i += 1)
+        my_putchar(str[i]);
 }

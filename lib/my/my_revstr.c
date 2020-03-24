@@ -1,29 +1,27 @@
 /*
 ** EPITECH PROJECT, 2019
-** my_revstr.c
+** my_revstr
 ** File description:
-** my_revstr.c task03 day06
+** reverse str
 */
-
-#include <stdio.h>
 
 char *my_revstr(char *str)
 {
-    char temporary = 0;
-    int j = 0;
     int i = 0;
-    int length = 0;
+    int j = 0;
+    int m = 0;
+    char temp;
 
-    for (; str[j] != 0; j++);
-    length = j;
-    j--;
-    while (i < j) {
-        temporary = str [i];
-        str [i] = str [j];
-        str [j] = temporary;
-        i++;
-        j--;
+    while (str[m])
+        m += 1;
+    m -= 1;
+    j = m;
+    while (i <= m/2) {
+        temp = str[i];
+        str[i] = str[j];
+        str[j] = temp;
+        i += 1;
+        j -= 1;
     }
-    str[length] = 0;
     return (str);
 }

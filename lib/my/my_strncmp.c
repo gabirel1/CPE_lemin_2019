@@ -1,15 +1,17 @@
 /*
 ** EPITECH PROJECT, 2019
-** my_strncmp.c
+** my_strncmp
 ** File description:
 ** my_strncmp.c
 */
 
-int my_strncmp(char const *s1, char const *s2, int n)
+#include <stdlib.h>
+
+int my_strncmp(char const *stack1, char const *stack2, int i)
 {
-    for (int i = 0; i < n; i += 1) {
-        if (s1[i] != s2[i])
-            return (s1[i] - s2[i]);
+    for (int j = 0; stack1[j] && stack2[j] && j < i; j += 1) {
+        if (stack1[j] != stack2[j])
+            return (stack1[j] - stack2[j]);
     }
     return (0);
 }

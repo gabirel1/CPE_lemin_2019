@@ -1,13 +1,13 @@
 /*
 ** EPITECH PROJECT, 2019
-** my_putchar.c
+** putchar
 ** File description:
-** my_putchar.c
+** putchar
 */
 
 #include <unistd.h>
 
-void my_putchar(char c)
+void my_putchar(const char c)
 {
     write(1, &c, 1);
 }

@@ -1,31 +1,25 @@
 /*
 ** EPITECH PROJECT, 2019
-** PSU_tetris_2019
+** my_strcat
 ** File description:
-** my_strcat.c
+** my_strcat
 */
 
-#include <stdlib.h>
+#include <stdio.h>
+#include "../../include/second_one.h"
 
-char *my_strcat(char *src, char const *buffer)
+char *my_strcat(char *str, char const *source)
 {
-    int a = 0;
-    int b = 0;
-    int c = 0;
-    char *src2 = NULL;
+    int i = 0;
+    char *result = malloc(sizeof(char) * (my_strlen(str) +
+    my_strlen(source) + 1));
 
-    for (; src[a] != '\0'; a += 1);
-    for (; buffer[b] != '\0'; b += 1);
-    src2 = malloc(sizeof(char) * (a + b + 2));
-    for (int i = 0; src[i] != '\0'; i += 1) {
-        src2[c] = src[i];
-        c += 1;
+    for (int j = 0; str[j]; j += 1) {
+        result[i++] = str[j];
     }
-    src2[c++] = '/';
-    for (int j = 0; buffer[j] != '\0'; j += 1) {
-        src2[c] = buffer[j];
-        c += 1;
+    for (int j = 0; source[j]; j += 1) {
+        result[i++] = source[j];
     }
-    src2[c] = '\0';
-    return (src2);
+    result[i] = '\0';
+    return (result);
 }
