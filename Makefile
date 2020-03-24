@@ -5,9 +5,9 @@
 ## makefile
 ##
 
-SRC		=	##		\
+SRC		=	src/main.c		\
 
-NAME	=	my_defender
+NAME	=	lem_in
 
 LIBRARY = 	make -C lib/my
 
