@@ -5,8 +5,6 @@
 ** add_node.c
 */
 
-#include "../include/linked_list.h"
-
 void add_node_at_front(int value, list_t **node)
 {
     list_t *new = malloc(sizeof(list_t));
