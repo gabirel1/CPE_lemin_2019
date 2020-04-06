@@ -1,31 +1,27 @@
 /*
 ** EPITECH PROJECT, 2019
-** PSU_tetris_2019
+** PSU_my_printf_2019
 ** File description:
-** my_strcat.c
+** my_print_c.c
 */
 
 #include <stdlib.h>
+#include "../../include/my.h"
 
-char *my_strcat(char *src, char const *buffer)
+char *my_strcat(char *start, char *line)
 {
+    int length_start = my_strlen(start);
+    int length_line = my_strlen(line);
+    char *reslt = NULL;
     int a = 0;
-    int b = 0;
-    int c = 0;
-    char *src2 = NULL;
 
-    for (; src[a] != '\0'; a += 1);
-    for (; buffer[b] != '\0'; b += 1);
-    src2 = malloc(sizeof(char) * (a + b + 2));
-    for (int i = 0; src[i] != '\0'; i += 1) {
-        src2[c] = src[i];
-        c += 1;
+    reslt = malloc(sizeof(char) * (length_start + length_line + 2));
+    for (; a < length_start; a += 1)
+        reslt[a] = start[a];
+    for (int b = 0; b < length_line; b += 1) {
+        reslt[a] = line[b];
+        a += 1;
     }
-    src2[c++] = '/';
-    for (int j = 0; buffer[j] != '\0'; j += 1) {
-        src2[c] = buffer[j];
-        c += 1;
-    }
-    src2[c] = '\0';
-    return (src2);
+    reslt[a] = '\0';
+    return (reslt);
 }
