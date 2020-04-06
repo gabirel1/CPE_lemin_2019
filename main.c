@@ -1,10 +1,3 @@
-/*
-** EPITECH PROJECT, 2020
-** main.c
-** File description:
-** main.c
-*/
-
 #include "include/my.h"
 #include "include/struct.h"
 
@@ -17,15 +10,12 @@ char *get_file(void)
     while (getline(&buffer, &len, stdin) != -1) {
         final = my_strcat(final, buffer);
     }
-    if (final == NULL)
-        return (NULL);
     return (final);
 }
 
 int check_error(char *str)
 {
-    if (str == NULL)
-        return (1);
+    (void)str;
     return (0);
 }
 
@@ -73,6 +63,7 @@ void add_node_at_back(char *line, node_t **node)
     new->end = NULL;
     new->next = NULL;
     new->name = tab[0];
+    new->neighbourg = NULL;
     new->x = my_getnbr(tab[1]);
     new->y = my_getnbr(tab[2]);
     if (*node == NULL) {
@@ -85,9 +76,35 @@ void add_node_at_back(char *line, node_t **node)
     tmp->next = new;
 }
 
+node_t *get_room(node_t *head, char *to_find)
+{
+    for (node_t *tmp = head; tmp; tmp = tmp->next)
+        if (my_strcmp(tmp->name, to_find) == 0)
+            return (tmp);
+    return (NULL);
+}
+
+void add_neighbour(neigh_t **head, char *room)
+{
+    neigh_t *new = malloc(sizeof(neigh_t));
+    neigh_t *tmp = *head;
+
+    new->next = NULL;
+    new->name = room;
+    if (*head == NULL) {
+        *head = new;
+        return;
+    }
+    while (tmp->next != NULL) {
+        tmp = tmp->next;
+    }
+    tmp->next = new;
+}
+
 void create_rooms(char **tab, node_t *head)
 {
     node_t *tmp = head;
+    char *s = NULL;
 
     for (int i = 0; tab[i]; i += 1) {
         if (tab_len(my_str_to_word_array(tab[i], ' ')) == 3) {
@@ -99,6 +116,14 @@ void create_rooms(char **tab, node_t *head)
                 add_node_at_back(tab[i], &head);
         }
     }
+    for (node_t *tmp = head; tmp; tmp = tmp->next) {
+        while ((s = my_check(tab, tmp->name)))
+            add_neighbour(&tmp->neighbourg, s);
+    }
+    while ((s = my_check(tab, head->start->name)))
+        add_neighbour(&head->start->neighbourg, s);
+    while ((s = my_check(tab, head->end->name)))
+        add_neighbour(&head->end->neighbourg, s);
 }
 
 int main(void)
@@ -107,19 +132,14 @@ int main(void)
     char *buffer = get_file();
     node_t *head = NULL;
 
-    if (check_error(buffer) == 1) {
-        free(buffer);
+    if (check_error(buffer) == 1)
         return (84);
-    }
     lemin.tab = my_str_to_word_array(buffer, '\n');
     for (int a = 0; lemin.tab[a]; a++) {
         if (lemin.tab[a][0] == '#' && lemin.tab[a][1] != '#')
             lemin.tab[a][0] = '\0';
     }
     create_rooms(lemin.tab, head);
-    get_nb_of_ants(&lemin, buffer);
-    my_printf("#number_of_ants\n%d\n", lemin.nb_of_ants);
-    my_free(&lemin, buffer);
     // find_bigger(&lemin);
     // start(&lemin);
     // my_free(&lemin, buffer);

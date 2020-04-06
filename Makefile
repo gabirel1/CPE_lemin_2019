@@ -7,7 +7,7 @@
 
 SRC	=	main.c 					\
 		linked_list/add_node.c	\
-		src/parser.c
+		src/parser.c			\
 
 LIB = 	$(wildcard lib/my/*.c)
 
