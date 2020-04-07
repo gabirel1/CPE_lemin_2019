@@ -10,12 +10,15 @@ char *get_file(void)
     while (getline(&buffer, &len, stdin) != -1) {
         final = my_strcat(final, buffer);
     }
+    if (final == NULL)
+        return (NULL);
     return (final);
 }
 
 int check_error(char *str)
 {
-    (void)str;
+    if (str == NULL)
+        return (1);
     return (0);
 }
 
@@ -132,14 +135,19 @@ int main(void)
     char *buffer = get_file();
     node_t *head = NULL;
 
-    if (check_error(buffer) == 1)
+    if (check_error(buffer) == 1) {
+        free(buffer);
         return (84);
+    }
     lemin.tab = my_str_to_word_array(buffer, '\n');
     for (int a = 0; lemin.tab[a]; a++) {
         if (lemin.tab[a][0] == '#' && lemin.tab[a][1] != '#')
             lemin.tab[a][0] = '\0';
     }
     create_rooms(lemin.tab, head);
+    get_nb_of_ants(&lemin, buffer);
+    my_printf("#number_of_ants\n%d\n", lemin.nb_of_ants);
+    my_free(&lemin, buffer);
     // find_bigger(&lemin);
     // start(&lemin);
     // my_free(&lemin, buffer);

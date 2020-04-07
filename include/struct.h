@@ -29,6 +29,7 @@ typedef struct lemin_s
 {
     char *buffer;
     char **tab;
+    int nb_of_ants;
 } lemin_t;
 
 #endif /* !STRUCT_H_ */

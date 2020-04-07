@@ -30,3 +30,19 @@ char *my_check(char **tunnels, char *string)
     i = 0;
     return(NULL);
 }
+
+void get_nb_of_ants(lemin_t *lemin, char *string)
+{
+    char *tmp = malloc(sizeof(char) *5);
+    int j = 0;
+
+    for (int i = 0; string[i] != 0 && string[i] != '\n'; i++) {
+        if (string[i] >= '0' && string[i] <= '9') {
+            tmp[j] = string[i];
+            j++;
+        }
+    }
+    tmp[j] = 0;
+    lemin->nb_of_ants = my_getnbr(tmp);
+    free(tmp);
+}
