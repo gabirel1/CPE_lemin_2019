@@ -28,7 +28,7 @@ char *my_check(char **tunnels, char *string)
             return (nb1);
     }
     i = 0;
-    return(NULL);
+    return (NULL);
 }
 
 void get_nb_of_ants(lemin_t *lemin, char *string)
@@ -45,4 +45,10 @@ void get_nb_of_ants(lemin_t *lemin, char *string)
     tmp[j] = 0;
     lemin->nb_of_ants = my_getnbr(tmp);
     free(tmp);
+}
+
+int parser(lemin_t *lemin, char *str)
+{
+    lemin->tab = my_str_to_word_array(str, '\n');
+    return (0);
 }

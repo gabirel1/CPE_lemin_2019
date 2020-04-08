@@ -8,6 +8,9 @@
 SRC	=	main.c 					\
 		linked_list/add_node.c	\
 		src/parser.c			\
+		src/free.c				\
+		src/room.c				\
+		src/my_tablength.c		\
 
 LIB = 	$(wildcard lib/my/*.c)
 
